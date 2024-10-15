@@ -11,34 +11,26 @@ on:
 
 jobs:
   install:
-    runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu pour exécuter le job
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        # Vérifie le code source depuis le dépôt GitHub
         uses: actions/checkout@v3
 
       - name: Setup Node.js
-        # Configure l'environnement Node.js avec la version spécifiée
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0'  # Version de Node.js
+          node-version: '20.18.0'
 
       - name: Clean npm cache
-        # Nettoie le cache npm pour éviter d'éventuels problèmes d'installation
         run: npm cache clean --force
 
       - name: Setup Ionic
-        # Installe Ionic globalement
-        run: |
-          npm install -g ionic@latest
+        run: npm install -g ionic@latest
 
       - name: Setup Angular CLI
-        # Installe Angular CLI globalement
         run: npm install -g @angular/cli
 
       - name: Cache Node modules
-        # Cache les dépendances npm pour accélérer les builds futurs
         uses: actions/cache@v3
         with:
           path: ~/.npm
@@ -47,49 +39,54 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies
-        # Installe les dépendances du projet à partir du fichier package.json
         run: npm install
 
   lint:
-    runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu pour exécuter le job
-    needs: install  # Ce job dépend du job d'installation
-
+    runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout repository
-        # Vérifie le code source depuis le dépôt GitHub pour le linting
         uses: actions/checkout@v3
 
       - name: Lint
-        # Exécute la vérification du code pour s'assurer qu'il respecte les standards de codage
-        run: npx ng lint  # Utilisation de npx pour exécuter Angular CLI localement
+        run: npm run lint
 
   build:
-    runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu pour exécuter le job
-    needs: install  # Ce job dépend aussi du job d'installation
-
+    runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout repository
-        # Vérifie le code source depuis le dépôt GitHub pour la compilation
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Setup Angular CLI
+        run: npm install -g @angular/cli
+
       - name: Build
-        # Compile le projet Ionic/Angular
         run: npm run build
 
   test:
-    runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu pour exécuter le job
-    needs: [ lint, build ]  # Ce job dépend des jobs de lint et de build
-
+    runs-on: ubuntu-latest
+    needs: [ lint, build ]
     steps:
       - name: Checkout repository
-        # Vérifie le code source depuis le dépôt GitHub pour les tests
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Setup Angular CLI
+        run: npm install -g @angular/cli
+
       - name: Test
-        # Exécute les tests unitaires pour vérifier que le projet fonctionne correctement
         run: npm test -- --watch=false --bail
 
       - name: Notify failure
-        # Envoie un message si le job échoue
         if: failure()
         run: echo "Build or tests failed. Please check the logs."
