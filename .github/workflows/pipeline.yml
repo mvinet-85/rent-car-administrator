@@ -14,13 +14,6 @@ jobs:
     # Utilise une machine virtuelle Ubuntu pour exécuter le pipeline
     runs-on: ubuntu-latest
 
-    # Forcer l'utilisation de Node.js 20 pour toutes les étapes
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./
-        node-version: '20.x'
-
     steps:
       - name: Checkout repository
         # Vérifie le code source depuis le dépôt GitHub
@@ -30,7 +23,7 @@ jobs:
         # Configure l'environnement Node.js avec la version spécifiée
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0'
+          node-version: '20.18.0' # Version de Node.js forcée
 
       - name: Setup Ionic
         # Installe Ionic et ses dépendances
