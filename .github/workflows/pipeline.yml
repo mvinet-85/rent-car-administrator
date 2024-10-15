@@ -23,7 +23,10 @@ jobs:
         # Configure l'environnement Node.js avec la version spécifiée
         uses: actions/setup-node@v3
         with:
-          node-version: '20.18.0' # Version de Node.js forcée
+          node-version: '20.18.0'
+
+      - name: Clean npm cache
+        run: npm cache clean --force
 
       - name: Setup Ionic
         # Installe Ionic et ses dépendances
