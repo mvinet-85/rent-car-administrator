@@ -1,0 +1,7 @@
+{
+  "name": "Rent-Car-Administrator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
