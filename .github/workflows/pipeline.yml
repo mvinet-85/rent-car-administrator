@@ -1,6 +1,5 @@
 name: CI
 
-# Déclenche le pipeline lors des push et pull requests sur la branche principale
 on:
   push:
     branches:
@@ -28,7 +27,7 @@ jobs:
         run: npm install -g ionic@latest
 
       - name: Setup Angular CLI
-        run: npm install -g @angular/cli
+        run: npm install -g @angular/cli@latest
 
       - name: Cache Node modules
         uses: actions/cache@v3
@@ -48,6 +47,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.0'
+
+      - name: Setup Angular CLI
+        run: npm install -g @angular/cli@latest
+
       - name: Lint
         run: npm run lint
 
@@ -64,7 +71,7 @@ jobs:
           node-version: '20.18.0'
 
       - name: Setup Angular CLI
-        run: npm install -g @angular/cli
+        run: npm install -g @angular/cli@latest
 
       - name: Build
         run: npm run build
@@ -82,7 +89,7 @@ jobs:
           node-version: '20.18.0'
 
       - name: Setup Angular CLI
-        run: npm install -g @angular/cli
+        run: npm install -g @angular/cli@latest
 
       - name: Test
         run: npm test -- --watch=false --bail
