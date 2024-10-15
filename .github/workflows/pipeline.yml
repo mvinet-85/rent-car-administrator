@@ -31,7 +31,7 @@ jobs:
       - name: Setup Ionic
         # Installe Ionic et ses dépendances
         run: |
-          npm install -g ionic@7.2.0
+          npm install -g ionic
 
       - name: Verify Ionic Installation
         # Vérifie l'installation d'Ionic
