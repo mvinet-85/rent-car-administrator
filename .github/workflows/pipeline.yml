@@ -61,7 +61,7 @@ jobs:
 
       - name: Lint
         # Exécute la vérification du code pour s'assurer qu'il respecte les standards de codage
-        run: npm run lint
+        run: npx ng lint  # Utilisation de npx pour exécuter Angular CLI localement
 
   build:
     runs-on: ubuntu-latest  # Utilise une machine virtuelle Ubuntu pour exécuter le job
