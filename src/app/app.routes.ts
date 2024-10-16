@@ -19,15 +19,15 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./car-list/car-list.page').then(m => m.CarListPage)
+        loadComponent: () => import('./car/car-list/car-list.page').then(m => m.CarListPage)
       },
       {
         path: 'new',
-        loadComponent: () => import('./car-creation/car-creation.page').then(m => m.CarCreationPage)
+        loadComponent: () => import('./car/car-creation/car-creation.page').then(m => m.CarCreationPage)
       },
       {
         path: ':id',
-        loadComponent: () => import('./car-detail/car-detail.page').then(m => m.CarDetailPage)
+        loadComponent: () => import('./car/car-detail/car-detail.page').then(m => m.CarDetailPage)
       }
     ]
 
