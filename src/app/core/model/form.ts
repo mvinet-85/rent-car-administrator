@@ -5,4 +5,5 @@ export interface RegisterFormModel {
   email: FormControl<string | null>,
   phone: FormControl<string | null>,
   password: FormControl<string | null>,
+  passwordConfirmation: FormControl<string | null>,
 }
