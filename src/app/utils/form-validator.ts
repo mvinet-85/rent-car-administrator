@@ -21,6 +21,23 @@ export class FormValidator {
     return namePattern.test(control.value) ? null : {name: true};
   }
 
+  static minLength(min: number) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return control.value && control.value.length >= min ? null : {
+        minLength: {
+          requiredLength: min,
+          actualLength: control.value ? control.value.length : 0
+        }
+      };
+    };
+  }
+
+  static passwordMatch(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
+    const passwordConfirmation = control.get('passwordConfirmation')?.value;
+    return password === passwordConfirmation ? null : {passwordMatch: true};
+  }
+
   static getErrorMessage(control: AbstractControl): string | null {
     if (control.hasError('required')) {
       return 'Le champ est obligatoire.';
@@ -32,7 +49,14 @@ export class FormValidator {
       return 'Le numéro de téléphone invalide. Il doit comporter 10 chiffres.';
     }
     if (control.hasError('name')) {
-      return 'Le nom utilisateur. est invalide';
+      return 'Le nom utilisateur est invalide.';
+    }
+    if (control.hasError('minLength')) {
+      const minLengthError = control.getError('minLength');
+      return `Le champ doit contenir au moins ${minLengthError.requiredLength} caractères.`;
+    }
+    if (control.hasError('passwordMatch')) {
+      return 'Les mots de passe ne correspondent pas.';
     }
     return null;
   }
