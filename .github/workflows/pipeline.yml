@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-  
+
       - name: Cache Node modules
         uses: actions/cache@v3
         with:
@@ -94,6 +94,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
