@@ -1,13 +1,78 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title>Inscription</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="register">
+  <div>
+    <form [formGroup]="registerForm">
+      <ion-item>
+        <ion-input
+          formControlName="userName"
+          label="Nom utilisateur"
+          labelPlacement="stacked"
+          placeholder="John Doe"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (registerForm.controls.userName.invalid && registerForm.controls.userName.dirty) {
+        <span class="span-error">{{ getErrorMessage('userName') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          formControlName="email"
+          label="E-mail"
+          labelPlacement="stacked"
+          placeholder="email@example.com"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (registerForm.controls.email.invalid && registerForm.controls.email.dirty) {
+        <span class="span-error">{{ getErrorMessage('email') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          [type]="passwordType"
+          formControlName="password"
+          label="Mot de passe"
+          labelPlacement="stacked"
+          placeholder="***********"
+        >
+        </ion-input>
+        <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" class="icon-eye"></ion-icon>
+      </ion-item>
+
+      @if (registerForm.controls.password.invalid && registerForm.controls.password.dirty) {
+        <span class="span-error">{{ getErrorMessage('password') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          [type]="passwordType"
+          formControlName="passwordConfirmation"
+          label="Confirmer le mot de passe"
+          labelPlacement="stacked"
+          placeholder="***********"
+        >
+        </ion-input>
+        <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" class="icon-eye"></ion-icon>
+      </ion-item>
+
+      @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty || registerForm.errors?.['passwordMatch']) {
+        <span class="span-error">{{ getErrorMessage('passwordConfirmation') }}</span>
+      }
+
+      <div class="container-button">
+        <ion-button (click)="onSignUp()" [disabled]="registerForm.invalid" size="medium">
+          S'inscrire
+        </ion-button>
+
+      </div>
+    </form>
+  </div>
 </ion-content>
