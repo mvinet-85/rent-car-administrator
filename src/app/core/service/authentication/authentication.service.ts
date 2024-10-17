@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {createUserWithEmailAndPassword, getAuth, UserCredential} from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, UserCredential} from "firebase/auth";
 import {getDatabase, ref, set} from 'firebase/database';
 import {User} from "../../model/user";
 
@@ -37,5 +37,9 @@ export class AuthenticationService {
         reject(error)
       });
     });
+  }
+
+  public signInWithEmailAndPassword(user: Partial<User>): Promise<UserCredential> {
+    return signInWithEmailAndPassword(getAuth(), user.email as string, user.password as string);
   }
 }

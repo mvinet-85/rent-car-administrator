@@ -7,3 +7,8 @@ export interface RegisterFormModel {
   password: FormControl<string | null>,
   passwordConfirmation: FormControl<string | null>,
 }
+
+export interface LoginFormModel {
+  email: FormControl<string | null>,
+  password: FormControl<string | null>,
+}

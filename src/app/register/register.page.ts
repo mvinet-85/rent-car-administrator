@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -27,7 +27,7 @@ import {User} from "../core/model/user";
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonItem, IonInput, ReactiveFormsModule, IonButton]
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
 
   public registerForm: FormGroup<RegisterFormModel> = new FormGroup<RegisterFormModel>({
     userName: new FormControl('', [FormValidator.required, FormValidator.userName, FormValidator.minLength(2)]),
@@ -47,10 +47,6 @@ export class RegisterPage implements OnInit {
 
   constructor() {
     addIcons({eyeOutline, eyeOffOutline});
-  }
-
-  ngOnInit() {
-    console.log("RegisterPage");
   }
 
   public onToggleShowPassword(): void {
