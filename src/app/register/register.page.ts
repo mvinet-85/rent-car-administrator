@@ -15,8 +15,9 @@ import {eyeOffOutline, eyeOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {Router} from "@angular/router";
 import {RegisterFormModel} from "../core/model/form";
-import {FormValidator} from "../utils/form-validator";
+import {FormValidator} from "../core/utils/form-validator";
 import {AuthenticationService} from "../core/service/authentication/authentication.service";
+import {Utils} from "../core/utils/utils";
 
 @Component({
   selector: 'app-register',
@@ -26,6 +27,7 @@ import {AuthenticationService} from "../core/service/authentication/authenticati
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonItem, IonInput, ReactiveFormsModule, IonButton]
 })
 export class RegisterPage implements OnInit {
+
   public registerForm: FormGroup<RegisterFormModel> = new FormGroup<RegisterFormModel>({
     userName: new FormControl('', [FormValidator.required, FormValidator.userName, FormValidator.minLength(2)]),
     email: new FormControl('', [FormValidator.required, FormValidator.email]),
@@ -34,8 +36,10 @@ export class RegisterPage implements OnInit {
     passwordConfirmation: new FormControl('', [FormValidator.required]),
   }, {validators: FormValidator.passwordMatch});
 
-  public passwordType = 'password';
-  public passwordIcon = 'eye-outline';
+  public passwordType: string = 'password';
+  public passwordIcon: string = 'eye-outline';
+  public passwordConfirmationType: string = 'password';
+  public passwordConfirmationIcon: string = 'eye-outline';
 
   constructor(private authenticationService: AuthenticationService, private router: Router) {
     addIcons({eyeOutline, eyeOffOutline});
@@ -46,13 +50,15 @@ export class RegisterPage implements OnInit {
   }
 
   public onToggleShowPassword(): void {
-    if (this.passwordType === 'password') {
-      this.passwordType = 'text';
-      this.passwordIcon = 'eye-off-outline';
-    } else {
-      this.passwordType = 'password';
-      this.passwordIcon = 'eye-outline';
-    }
+    const result = Utils.togglePasswordVisibility(this.passwordType);
+    this.passwordType = result.type;
+    this.passwordIcon = result.icon;
+  }
+
+  public onToggleShowPasswordConfirmation(): void {
+    const result = Utils.togglePasswordVisibility(this.passwordConfirmationType);
+    this.passwordConfirmationType = result.type;
+    this.passwordConfirmationIcon = result.icon;
   }
 
   public onSignUp(): void {

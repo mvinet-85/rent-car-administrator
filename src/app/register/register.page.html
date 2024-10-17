@@ -53,14 +53,15 @@
 
       <ion-item>
         <ion-input
-          [type]="passwordType"
+          [type]="passwordConfirmationType"
           formControlName="passwordConfirmation"
           label="Confirmer le mot de passe"
           labelPlacement="stacked"
           placeholder="***********"
         >
         </ion-input>
-        <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" class="icon-eye"></ion-icon>
+        <ion-icon (click)="onToggleShowPasswordConfirmation()" [name]="passwordConfirmationIcon"
+                  class="icon-eye"></ion-icon>
       </ion-item>
 
       @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty) {
