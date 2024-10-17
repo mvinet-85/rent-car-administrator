@@ -35,8 +35,14 @@ export class FormValidator {
   static passwordMatch(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const passwordConfirmation = control.get('passwordConfirmation')?.value;
+
+    if (!password || !passwordConfirmation) {
+      return null;
+    }
+
     return password === passwordConfirmation ? null : {passwordMatch: true};
   }
+
 
   static getErrorMessage(control: AbstractControl): string | null {
     if (control.hasError('required')) {

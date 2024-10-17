@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -18,6 +18,7 @@ import {RegisterFormModel} from "../core/model/form";
 import {FormValidator} from "../core/utils/form-validator";
 import {AuthenticationService} from "../core/service/authentication/authentication.service";
 import {Utils} from "../core/utils/utils";
+import {User} from "../core/model/user";
 
 @Component({
   selector: 'app-register',
@@ -41,7 +42,10 @@ export class RegisterPage implements OnInit {
   public passwordConfirmationType: string = 'password';
   public passwordConfirmationIcon: string = 'eye-outline';
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  private router: Router = inject(Router);
+  private authenticationService: AuthenticationService = inject(AuthenticationService);
+
+  constructor() {
     addIcons({eyeOutline, eyeOffOutline});
   }
 
@@ -63,16 +67,15 @@ export class RegisterPage implements OnInit {
 
   public onSignUp(): void {
     if (this.registerForm.valid) {
-      console.log('Form Submitted!', this.registerForm.value);
-      // this.authenticationService.signUpWithEmailAndPassword(this.registerForm.value as unknown as User)
-      //   .then((userCreated: boolean | unknown) => {
-      //     console.log(userCreated);
-      //     if (userCreated) {
-      //       this.router.navigate(['car']);
-      //     }
-      //   }).catch((error: any) => {
-      //     console.log(error);
-      //   })
+      this.authenticationService.signUpWithEmailAndPassword(this.registerForm.value as unknown as User)
+        .then((userCreated: boolean | unknown) => {
+          console.log('userCreated : ', userCreated);
+          if (userCreated) {
+            this.router.navigate(['car']);
+          }
+        }).catch((error: any) => {
+        console.error(error);
+      })
     }
   }
 

@@ -37,6 +37,21 @@
 
       <ion-item>
         <ion-input
+          formControlName="phone"
+          label="Numéro de téléhone"
+          labelPlacement="stacked"
+          placeholder="0606060606"
+          type="tel"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (registerForm.controls.phone.invalid && registerForm.controls.phone.dirty) {
+        <span class="span-error">{{ getErrorMessage('phone') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
           [type]="passwordType"
           formControlName="password"
           label="Mot de passe"
@@ -76,8 +91,8 @@
         <ion-button (click)="onSignUp()" [disabled]="registerForm.invalid" size="medium">
           S'inscrire
         </ion-button>
-
       </div>
+
     </form>
   </div>
 </ion-content>
