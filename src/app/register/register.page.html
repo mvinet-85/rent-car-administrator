@@ -63,8 +63,12 @@
         <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" class="icon-eye"></ion-icon>
       </ion-item>
 
-      @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty || registerForm.errors?.['passwordMatch']) {
+      @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty) {
         <span class="span-error">{{ getErrorMessage('passwordConfirmation') }}</span>
+      }
+
+      @if (registerForm.errors?.['passwordMatch'] && registerForm.controls.passwordConfirmation.dirty) {
+        <span class="span-error">Les mots de passe ne correspondent pas</span>
       }
 
       <div class="container-button">

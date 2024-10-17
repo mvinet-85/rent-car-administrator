@@ -55,9 +55,6 @@ export class FormValidator {
       const minLengthError = control.getError('minLength');
       return `Le champ doit contenir au moins ${minLengthError.requiredLength} caractères.`;
     }
-    if (control.hasError('passwordMatch')) {
-      return 'Les mots de passe ne correspondent pas.';
-    }
     return null;
   }
 }
