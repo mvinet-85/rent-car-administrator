@@ -12,12 +12,9 @@ export class AuthenticationService {
   }
 
   public signUpWithEmailAndPassword(user: User): Promise<boolean | unknown> {
-    console.log('user : ', user);
-    console.log('getDatabase() : ', getDatabase());
     const database = getDatabase();
 
     return new Promise((resolve, reject) => {
-      console.log('promise');
       createUserWithEmailAndPassword(getAuth(), user.email, user.password)
         .then((userCreated: UserCredential) => {
 

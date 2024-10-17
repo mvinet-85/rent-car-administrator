@@ -65,7 +65,6 @@ export class RegisterPage {
     if (this.registerForm.valid) {
       this.authenticationService.signUpWithEmailAndPassword(this.registerForm.value as unknown as User)
         .then((userCreated: boolean | unknown) => {
-          console.log('userCreated : ', userCreated);
           if (userCreated) {
             this.router.navigate(['car']);
           }

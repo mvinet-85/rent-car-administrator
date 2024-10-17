@@ -55,7 +55,7 @@ export class LoginPage {
       .then(() => {
         this.router.navigate(['car']);
       }).catch((error) => {
-      console.log(error);
+      console.error(error);
     });
   }
 
