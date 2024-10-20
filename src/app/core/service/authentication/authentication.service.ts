@@ -30,7 +30,7 @@ export class AuthenticationService {
             });
 
         }).catch((error) => {
-        console.error(error);
+        console.error('Erreur lors de la création de l\'utilisateur : ', error);
         reject(error)
       });
     });
