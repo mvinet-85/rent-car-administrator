@@ -13,7 +13,7 @@ import {
 } from '@ionic/angular/standalone';
 import {addIcons} from "ionicons";
 import {eyeOffOutline, eyeOutline} from "ionicons/icons";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AuthenticationService} from "../core/service/authentication/authentication.service";
 import {Utils} from "../core/utils/utils";
 import {FormValidator} from "../core/utils/form-validator";
@@ -25,7 +25,7 @@ import {User} from "../core/model/user";
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonItem, IonIcon, IonButton, ReactiveFormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInput, IonItem, IonIcon, IonButton, ReactiveFormsModule, RouterLink]
 })
 export class LoginPage {
 

@@ -8,12 +8,13 @@ import {
   IonIcon,
   IonInput,
   IonItem,
+  IonNavLink,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {eyeOffOutline, eyeOutline} from "ionicons/icons";
 import {addIcons} from "ionicons";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {RegisterFormModel} from "../core/model/form";
 import {FormValidator} from "../core/utils/form-validator";
 import {AuthenticationService} from "../core/service/authentication/authentication.service";
@@ -25,7 +26,7 @@ import {User} from "../core/model/user";
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonItem, IonInput, ReactiveFormsModule, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonIcon, IonItem, IonInput, ReactiveFormsModule, IonButton, IonNavLink, RouterLink]
 })
 export class RegisterPage {
 
