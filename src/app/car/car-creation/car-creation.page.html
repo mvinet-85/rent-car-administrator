@@ -1,13 +1,93 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>car-creation</ion-title>
+    <ion-title>Liste des voitures</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">car-creation</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="new-car">
+  <div>
+    <form [formGroup]="carForm">
+      <ion-item>
+        <ion-input
+          formControlName="brand"
+          label="Marque de la voiture"
+          labelPlacement="stacked"
+          placeholder="BMW"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (carForm.controls.brand.invalid && carForm.controls.brand.dirty) {
+        <span class="span-error">{{ getErrorMessage('brand') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          formControlName="model"
+          label="Modele de la voiture"
+          labelPlacement="stacked"
+          placeholder="Z4 coupé"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (carForm.controls.model.invalid && carForm.controls.model.dirty) {
+        <span class="span-error">{{ getErrorMessage('model') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          formControlName="licensePlate"
+          label="Plaque d'immatriculation"
+          labelPlacement="stacked"
+          placeholder="AA-229-AA"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (carForm.controls.licensePlate.invalid && carForm.controls.licensePlate.dirty) {
+        <span class="span-error">{{ getErrorMessage('licensePlate') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          (change)="upload($event)"
+          formControlName="frontPicture"
+          label="Photo avant de la voiture"
+          labelPlacement="stacked"
+          type="file"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (carForm.controls.frontPicture.invalid && carForm.controls.frontPicture.dirty) {
+        <span class="span-error">{{ getErrorMessage('frontPicture') }}</span>
+      }
+
+      <ion-item>
+        <ion-input
+          (change)="upload($event)"
+          formControlName="behindPicture"
+          label="Photo arrière de la voiture"
+          labelPlacement="stacked"
+          type="file"
+        >
+        </ion-input>
+      </ion-item>
+
+      @if (carForm.controls.behindPicture.invalid && carForm.controls.behindPicture.dirty) {
+        <span class="span-error">{{ getErrorMessage('behindPicture') }}</span>
+      }
+
+      <div class="container-button">
+        <ion-button (click)="onCreate()" [disabled]="carForm.invalid" size="medium">
+          Ajouter
+        </ion-button>
+        <ion-button (click)="onNavigateToCarListePage()" size="medium">
+          Annuler
+        </ion-button>
+      </div>
+
+    </form>
+  </div>
 </ion-content>
