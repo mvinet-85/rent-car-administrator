@@ -21,6 +21,11 @@ export class FormValidator {
     return namePattern.test(control.value) ? null : {name: true};
   }
 
+  static licensePlate(control: AbstractControl): ValidationErrors | null {
+    const namePattern = /^[A-Z]{2}-\d{3}-[A-Z]{2}$|^\d{1,4} [A-Z]{1,2} \d{2}$|^[A-Z]{1,2}-\d{1,4}-[A-Z]{1,2}$/;
+    return namePattern.test(control.value) ? null : {name: true};
+  }
+
   static minLength(min: number) {
     return (control: AbstractControl): ValidationErrors | null => {
       return control.value && control.value.length >= min ? null : {
@@ -43,6 +48,12 @@ export class FormValidator {
     return password === passwordConfirmation ? null : {passwordMatch: true};
   }
 
+  static isLicensePlateExists(licencesPlateArray: string[]) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value || '';
+      return licencesPlateArray.includes(value) ? {licensePlateExists: true} : null;
+    };
+  }
 
   static getErrorMessage(control: AbstractControl): string | null {
     if (control.hasError('required')) {
@@ -60,6 +71,9 @@ export class FormValidator {
     if (control.hasError('minLength')) {
       const minLengthError = control.getError('minLength');
       return `Le champ doit contenir au moins ${minLengthError.requiredLength} caractères.`;
+    }
+    if (control.hasError('licensePlateExists')) {
+      return 'La plaque d\'immatriculation existe déjà.';
     }
     return null;
   }
