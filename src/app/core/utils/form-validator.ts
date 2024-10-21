@@ -23,7 +23,7 @@ export class FormValidator {
 
   static licensePlate(control: AbstractControl): ValidationErrors | null {
     const namePattern = /^[A-Z]{2}-\d{3}-[A-Z]{2}$|^\d{1,4} [A-Z]{1,2} \d{2}$|^[A-Z]{1,2}-\d{1,4}-[A-Z]{1,2}$/;
-    return namePattern.test(control.value) ? null : {name: true};
+    return namePattern.test(control.value) ? null : {licensePlate: true};
   }
 
   static minLength(min: number) {
@@ -57,23 +57,26 @@ export class FormValidator {
 
   static getErrorMessage(control: AbstractControl): string | null {
     if (control.hasError('required')) {
-      return 'Le champ est obligatoire.';
+      return 'Le champ est obligatoire';
     }
     if (control.hasError('email')) {
-      return 'L\'adresse email invalide.';
+      return 'L\'adresse email invalide';
     }
     if (control.hasError('phone')) {
-      return 'Le numéro de téléphone invalide. Il doit comporter 10 chiffres.';
+      return 'Le numéro de téléphone invalide. Il doit comporter 10 chiffres';
     }
     if (control.hasError('name')) {
-      return 'Le nom utilisateur est invalide.';
+      return 'Le nom utilisateur est invalide';
     }
     if (control.hasError('minLength')) {
       const minLengthError = control.getError('minLength');
-      return `Le champ doit contenir au moins ${minLengthError.requiredLength} caractères.`;
+      return `Le champ doit contenir au moins ${minLengthError.requiredLength} caractères`;
     }
     if (control.hasError('licensePlateExists')) {
-      return 'La plaque d\'immatriculation existe déjà.';
+      return 'La plaque d\'immatriculation existe déjà';
+    }
+    if (control.hasError('licensePlate')) {
+      return 'Le format de la plaque d\'immatriculation n\'est pas correcte';
     }
     return null;
   }

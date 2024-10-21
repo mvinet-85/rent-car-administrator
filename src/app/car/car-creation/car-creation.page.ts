@@ -34,6 +34,7 @@ export class CarCreationPage implements OnInit {
     licensePlate: new FormControl('', [
       FormValidator.required,
       FormValidator.minLength(5),
+      FormValidator.licensePlate,
     ]),
     frontPicture: new FormControl(null, [FormValidator.required]),
     behindPicture: new FormControl(null, [FormValidator.required]),
@@ -56,6 +57,7 @@ export class CarCreationPage implements OnInit {
         this.carForm.controls.licensePlate.setValidators([
           FormValidator.required,
           FormValidator.minLength(5),
+          FormValidator.licensePlate,
           FormValidator.isLicensePlateExists(this.allLicencesPlate)
         ]);
         this.carForm.controls.licensePlate.updateValueAndValidity();
