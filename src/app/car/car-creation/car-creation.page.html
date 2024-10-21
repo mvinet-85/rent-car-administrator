@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Liste des voitures</ion-title>
+    <ion-title>Ajout d'une nouvelle voiture</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -60,6 +60,12 @@
         </ion-input>
       </ion-item>
 
+      @if (frontPicturePreview) {
+        <div class="image-preview">
+          <ion-img [src]="frontPicturePreview" alt="Prévisualisation de la photo avant"/>
+        </div>
+      }
+
       @if (carForm.controls.frontPicture.invalid && carForm.controls.frontPicture.dirty) {
         <span class="span-error">{{ getErrorMessage('frontPicture') }}</span>
       }
@@ -74,6 +80,12 @@
         >
         </ion-input>
       </ion-item>
+
+      @if (behindPicturePreview) {
+        <div class="image-preview">
+          <ion-img [src]="behindPicturePreview" alt="Prévisualisation de la photo arrière"/>
+        </div>
+      }
 
       @if (carForm.controls.behindPicture.invalid && carForm.controls.behindPicture.dirty) {
         <span class="span-error">{{ getErrorMessage('behindPicture') }}</span>

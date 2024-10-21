@@ -14,4 +14,15 @@
       margin: 10px;
     }
   }
+
+  .image-preview {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 15px 0;
+
+    ion-img {
+      width: 50%;
+      height: auto;
+    }
+  }
 }

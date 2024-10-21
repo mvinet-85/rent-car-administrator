@@ -6,6 +6,7 @@ import {
   IonContent,
   IonHeader,
   IonIcon,
+  IonImg,
   IonInput,
   IonItem,
   IonTitle,
@@ -22,7 +23,7 @@ import {CarFormModel} from "../../core/model/form";
   templateUrl: './car-creation.page.html',
   styleUrls: ['./car-creation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonIcon, IonInput, IonItem, ReactiveFormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonIcon, IonInput, IonItem, ReactiveFormsModule, IonImg]
 })
 export class CarCreationPage implements OnInit {
 
@@ -37,6 +38,8 @@ export class CarCreationPage implements OnInit {
     behindPicture: new FormControl(null, [FormValidator.required]),
   });
 
+  public frontPicturePreview: string | ArrayBuffer | null = null;
+  public behindPicturePreview: string | ArrayBuffer | null = null;
   private allLicencesPlate: string[] = [];
   private readonly carService: CarService = inject(CarService);
   private readonly router: Router = inject(Router);
@@ -54,7 +57,6 @@ export class CarCreationPage implements OnInit {
           FormValidator.isLicensePlateExists(this.allLicencesPlate)
         ]);
         this.carForm.controls.licensePlate.updateValueAndValidity();
-        console.log('allLicencesPlate', this.allLicencesPlate);
       })
       .catch((error: any) => {
         console.error(error);
@@ -87,7 +89,21 @@ export class CarCreationPage implements OnInit {
   upload($event: Event, formControlName: string): void {
     const input = $event.target as HTMLInputElement;
     if (input.files?.[0]) {
-      this.carForm.get(formControlName)?.setValue(formControlName);
+      const file = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.carForm.get(formControlName)?.setValue(file);
+
+        if (formControlName === 'frontPicture') {
+          this.frontPicturePreview = reader.result;
+        } else if (formControlName === 'behindPicture') {
+          this.behindPicturePreview = reader.result;
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   }
+
 }
