@@ -26,7 +26,6 @@ export class CarService {
       onValue(contactsRef, (snapshot) => {
         const data = snapshot.val();
         const licencesPlateArray: string[] = [];
-        console.log('data', data);
         if (data) {
           Object.entries(data).forEach(value => {
             const car: Car = value[1] as Car;
