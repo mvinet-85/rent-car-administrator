@@ -17,6 +17,7 @@ import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
 import {Car} from "../../core/model/car";
 import {CarFormModel} from "../../core/model/form";
+import {ImageService} from "../../core/service/image/image.service";
 
 @Component({
   selector: 'app-car-creation',
@@ -42,6 +43,7 @@ export class CarCreationPage implements OnInit {
   public behindPicturePreview: string | ArrayBuffer | null = null;
   private allLicencesPlate: string[] = [];
   private readonly carService: CarService = inject(CarService);
+  private readonly imageService: ImageService = inject(ImageService);
   private readonly router: Router = inject(Router);
 
   constructor() {
@@ -90,20 +92,20 @@ export class CarCreationPage implements OnInit {
     const input = $event.target as HTMLInputElement;
     if (input.files?.[0]) {
       const file = input.files[0];
-      const reader = new FileReader();
+      const filePath = `car/${file.name}`;
 
-      reader.onload = () => {
-        this.carForm.get(formControlName)?.setValue(file);
-
-        if (formControlName === 'frontPicture') {
-          this.frontPicturePreview = reader.result;
-        } else if (formControlName === 'behindPicture') {
-          this.behindPicturePreview = reader.result;
-        }
-      };
-
-      reader.readAsDataURL(file);
+      this.imageService.uploadImage(filePath, file)
+        .then((url) => {
+          this.carForm.get(formControlName)?.setValue(url);
+          if (formControlName === 'frontPicture') {
+            this.frontPicturePreview = url;
+          } else if (formControlName === 'behindPicture') {
+            this.behindPicturePreview = url;
+          }
+        })
+        .catch((error) => {
+          console.error('Erreur lors de l\'upload de l\'image : ', error);
+        });
     }
   }
-
 }
