@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>car-list</ion-title>
+    <ion-title>Liste des voitures</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">car-list</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="car-list">
+  <div class="container-button">
+    <ion-button (click)="onNavigateToCreationPage()" size="medium">
+      Ajouter une nouvelle voiture
+    </ion-button>
+  </div>
 </ion-content>
