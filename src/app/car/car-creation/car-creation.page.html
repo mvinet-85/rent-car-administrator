@@ -51,7 +51,7 @@
 
       <ion-item>
         <ion-input
-          (change)="upload($event)"
+          (change)="upload($event, 'frontPicture')"
           formControlName="frontPicture"
           label="Photo avant de la voiture"
           labelPlacement="stacked"
@@ -66,7 +66,7 @@
 
       <ion-item>
         <ion-input
-          (change)="upload($event)"
+          (change)="upload($event, 'behindPicture')"
           formControlName="behindPicture"
           label="Photo arrière de la voiture"
           labelPlacement="stacked"
@@ -83,7 +83,7 @@
         <ion-button (click)="onCreate()" [disabled]="carForm.invalid" size="medium">
           Ajouter
         </ion-button>
-        <ion-button (click)="onNavigateToCarListePage()" size="medium">
+        <ion-button (click)="onNavigateToCarListPage()" size="medium">
           Annuler
         </ion-button>
       </div>
