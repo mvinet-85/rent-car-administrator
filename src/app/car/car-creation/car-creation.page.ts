@@ -11,11 +11,11 @@ import {
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
-import {CarFormModel} from "../../core/model/form";
 import {FormValidator} from "../../core/utils/form-validator";
 import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
 import {Car} from "../../core/model/car";
+import {CarFormModel} from "../../core/model/form";
 
 @Component({
   selector: 'app-car-creation',
@@ -29,19 +29,36 @@ export class CarCreationPage implements OnInit {
   public carForm: FormGroup<CarFormModel> = new FormGroup<CarFormModel>({
     brand: new FormControl('', [FormValidator.required, FormValidator.minLength(2)]),
     model: new FormControl('', [FormValidator.required, FormValidator.minLength(2)]),
-    licensePlate: new FormControl('', [FormValidator.required, FormValidator.licensePlate]),
+    licensePlate: new FormControl('', [
+      FormValidator.required,
+      FormValidator.minLength(5),
+    ]),
     frontPicture: new FormControl(null, [FormValidator.required]),
     behindPicture: new FormControl(null, [FormValidator.required]),
   });
 
-  private router: Router = inject(Router);
-  private carService: CarService = inject(CarService);
+  private allLicencesPlate: string[] = [];
+  private readonly carService: CarService = inject(CarService);
+  private readonly router: Router = inject(Router);
 
   constructor() {
   }
 
   ngOnInit() {
-    console.log("CarCreationPage");
+    this.carService.getAllLicensePlate()
+      .then((licencesPlateArray: string[]) => {
+        this.allLicencesPlate = licencesPlateArray;
+        this.carForm.controls.licensePlate.setValidators([
+          FormValidator.required,
+          FormValidator.minLength(5),
+          FormValidator.isLicensePlateExists(this.allLicencesPlate)
+        ]);
+        this.carForm.controls.licensePlate.updateValueAndValidity();
+        console.log('allLicencesPlate', this.allLicencesPlate);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
   }
 
   getErrorMessage(controlName: string): string | null {
@@ -52,30 +69,25 @@ export class CarCreationPage implements OnInit {
     return null;
   }
 
-  onCreate() {
+  public onCreate(): void {
     if (this.carForm.valid) {
-      this.carService.createCar(this.carForm.value as unknown as Car)
-        .then((userCreated: boolean | unknown) => {
-          if (userCreated) {
-            this.onNavigateToCarListePage();
-          }
+      this.carService.saveCar(this.carForm.value as unknown as Car)
+        .then(() => {
+          this.onNavigateToCarListPage();
         }).catch((error: any) => {
         console.error(error);
-      })
+      });
     }
   }
 
-  onNavigateToCarListePage() {
+  onNavigateToCarListPage(): void {
     this.router.navigate(['/car']);
   }
 
-  upload($event: Event) {
+  upload($event: Event, formControlName: string): void {
     const input = $event.target as HTMLInputElement;
-
     if (input.files?.[0]) {
-      const file: File = input.files?.[0];
-      const controlName = input.getAttribute('formControlName');
-      this.carForm.controls.frontPicture.setValue(file);
+      this.carForm.get(formControlName)?.setValue(formControlName);
     }
   }
 }
