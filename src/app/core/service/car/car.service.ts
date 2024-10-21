@@ -22,17 +22,17 @@ export class CarService {
 
   public getAllLicensePlate(): Promise<string[]> {
     return new Promise((resolve, reject) => {
-      const contactsRef = ref(getDatabase(), 'car/');
-      onValue(contactsRef, (snapshot) => {
+      const carsRef = ref(getDatabase(), 'car/');
+      onValue(carsRef, (snapshot) => {
         const data = snapshot.val();
-        const licencesPlateArray: string[] = [];
+        const licensePlateArray: string[] = [];
         if (data) {
           Object.entries(data).forEach(value => {
             const car: Car = value[1] as Car;
-            licencesPlateArray.push(car.licensePlate);
+            licensePlateArray.push(car.licensePlate);
           });
         }
-        resolve(licencesPlateArray);
+        resolve(licensePlateArray);
       });
     });
   }
