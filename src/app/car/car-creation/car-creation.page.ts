@@ -101,7 +101,7 @@ export class CarCreationPage implements OnInit {
     const input = $event.target as HTMLInputElement;
     if (input.files?.[0]) {
       const file = input.files[0];
-      const filePath = `car/${file.name}`;
+      const filePath = `cars/${file.name}`;
 
       this.imageService.uploadImage(filePath, file)
         .then((url) => {

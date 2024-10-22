@@ -11,7 +11,7 @@ export class CarService {
   }
 
   public saveCar(car: Car): Promise<void> {
-    return set(ref(getDatabase(), 'car/' + car.licensePlate), {
+    return set(ref(getDatabase(), 'cars/' + car.licensePlate), {
       brand: car.brand,
       model: car.model,
       licensePlate: car.licensePlate,
@@ -22,7 +22,7 @@ export class CarService {
 
   public getAllLicensePlate(): Promise<string[]> {
     return new Promise((resolve, reject) => {
-      const carsRef = ref(getDatabase(), 'car/');
+      const carsRef = ref(getDatabase(), 'cars/');
       onValue(carsRef, (snapshot) => {
         const data = snapshot.val();
         const licensePlateArray: string[] = [];
