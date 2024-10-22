@@ -52,7 +52,7 @@
       <ion-item>
         <ion-input
           (change)="upload($event, 'frontPicture')"
-          formControlName="frontPicture"
+          accept="image/*"
           label="Photo avant de la voiture"
           labelPlacement="stacked"
           type="file"
@@ -66,14 +66,10 @@
         </div>
       }
 
-      @if (carForm.controls.frontPicture.invalid && carForm.controls.frontPicture.dirty) {
-        <span class="span-error">{{ getErrorMessage('frontPicture') }}</span>
-      }
-
       <ion-item>
         <ion-input
           (change)="upload($event, 'behindPicture')"
-          formControlName="behindPicture"
+          accept="image/*"
           label="Photo arrière de la voiture"
           labelPlacement="stacked"
           type="file"
@@ -85,10 +81,6 @@
         <div class="image-preview">
           <ion-img [src]="behindPicturePreview" alt="Prévisualisation de la photo arrière"/>
         </div>
-      }
-
-      @if (carForm.controls.behindPicture.invalid && carForm.controls.behindPicture.dirty) {
-        <span class="span-error">{{ getErrorMessage('behindPicture') }}</span>
       }
 
       <div class="container-button">
