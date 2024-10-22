@@ -87,7 +87,14 @@ export class CarCreationPage implements OnInit {
   }
 
   onNavigateToCarListPage(): void {
+    this.onResetForm();
     this.router.navigate(['/car']);
+  }
+
+  onResetForm(): void {
+    this.behindPicturePreview = null;
+    this.frontPicturePreview = null;
+    this.carForm.reset();
   }
 
   upload($event: Event, formControlName: string): void {
