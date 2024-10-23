@@ -1,16 +1,32 @@
 .car-list {
+
+  .card-list {
+    margin-bottom: 70px;
+
+    .image-preview {
+      display: flex;
+      justify-content: center;
+
+      ion-img {
+        width: 80%;
+        height: auto;
+      }
+    }
+  }
+
   .container-button {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     position: fixed;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
-    padding: 1rem;
+    padding: 10px;
+    background: #ffffff;
 
     ion-button {
       width: 90%;
-      margin: 10px;
+      margin: 5px;
     }
   }
 }
