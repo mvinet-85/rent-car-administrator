@@ -37,15 +37,23 @@ export class CarListPage implements OnInit {
 
   constructor() {
   }
-
+  
   ngOnInit() {
-    this.carService.getAllCar()
-      .then((cars: Car[]) => {
-        this.cars = cars;
-      });
+    this.loadCars();
+  }
+
+  ionViewWillEnter() {
+    this.loadCars();
   }
 
   onNavigateToCreationPage() {
     this.router.navigate(['car/new']);
+  }
+
+  private loadCars() {
+    this.carService.getAllCar()
+      .then((cars: Car[]) => {
+        this.cars = cars;
+      });
   }
 }
