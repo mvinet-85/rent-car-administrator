@@ -52,4 +52,18 @@ export class CarService {
             });
         });
     }
+
+    public getCarById(licensePlate: string): Promise<Car> {
+        return new Promise((resolve, reject) => {
+            const carRef = ref(getDatabase(), 'cars/' + licensePlate);
+            onValue(carRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    resolve(data as Car);
+                } else {
+                    reject('La voiture avec la plaque d\'immatriculation est introuvable');
+                }
+            });
+        });
+    }
 }
