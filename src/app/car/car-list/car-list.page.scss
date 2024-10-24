@@ -3,6 +3,10 @@
   .card-list {
     margin-bottom: 70px;
 
+    ion-card {
+      cursor: pointer;
+    }
+
     .image-preview {
       display: flex;
       justify-content: center;

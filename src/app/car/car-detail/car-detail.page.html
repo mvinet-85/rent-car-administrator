@@ -1,13 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>car-detail</ion-title>
+    <div class="header">
+      <ion-icon (click)="onNavigateToCarListPage()" name="arrow-back" size="medium"></ion-icon>
+      <ion-title>Détail de la voiture</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">car-detail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="car-detail">
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Modèle : {{ car?.model }}</ion-card-title>
+      <ion-card-subtitle>Marque : {{ car?.brand }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Plaque d'immatriculation : {{ car?.licensePlate }}
+
+      <ion-img [src]="car?.frontPicture" alt="{{ car?.model }} front picture"></ion-img>
+      <ion-img [src]="car?.behindPicture" alt="{{ car?.model }} behind picture"></ion-img>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

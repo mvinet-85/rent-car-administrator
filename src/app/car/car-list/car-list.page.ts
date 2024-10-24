@@ -37,7 +37,7 @@ export class CarListPage implements OnInit {
 
   constructor() {
   }
-  
+
   ngOnInit() {
     this.loadCars();
   }
@@ -48,6 +48,10 @@ export class CarListPage implements OnInit {
 
   onNavigateToCreationPage() {
     this.router.navigate(['car/new']);
+  }
+
+  onCarSelect(licensePlate: string) {
+    this.router.navigate([`/car/${licensePlate}`]);
   }
 
   private loadCars() {

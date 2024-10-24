@@ -9,7 +9,7 @@
   <div class="card-list">
     <ion-list>
       @for (car of cars; track car) {
-        <ion-card>
+        <ion-card (click)="onCarSelect(car.licensePlate)">
           <div class="image-preview">
             <ion-img alt="Photo de la voiture" [src]="car.frontPicture"/>
           </div>
