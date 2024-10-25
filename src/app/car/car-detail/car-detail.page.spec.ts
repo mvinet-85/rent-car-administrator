@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {CarDetailPage} from './car-detail.page';
-import {ActivatedRoute} from "@angular/router";
-import {of} from "rxjs";
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('CarDetailPage', () => {
   let component: CarDetailPage;
@@ -9,7 +9,7 @@ describe('CarDetailPage', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CarDetailPage],
+      imports: [CarDetailPage],
       providers: [
         {
           provide: ActivatedRoute,
