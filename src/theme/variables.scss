@@ -1,2 +1,19 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+ion-content {
+  --background: none;
+  background-image: url('/assets/web-background.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  ion-content {
+    --background: none;
+    background-image: url('/assets/phone-background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
