@@ -1,35 +1,44 @@
-<ion-content [fullscreen]="true" class="login">
-  <div>
-    <form [formGroup]="loginForm">
-      <ion-item>
+<ion-content [fullscreen]="true">
+  <div class="login">
+    <form [formGroup]="loginForm" class="login-form">
+
+      <h1>Se connecter</h1>
+
+      <div class="form-field">
         <ion-input
+          fill="solid"
           formControlName="email"
           label="E-mail"
           labelPlacement="stacked"
           placeholder="email@example.com"
         >
         </ion-input>
-      </ion-item>
 
-      @if (loginForm.controls.email.invalid && loginForm.controls.email.dirty) {
-        <span class="span-error">{{ getErrorMessage('email') }}</span>
-      }
+        <div class="span-field">
+          @if (loginForm.controls.email.invalid && loginForm.controls.email.dirty) {
+            <span class="span-error">{{ getErrorMessage('email') }}</span>
+          }
+        </div>
+      </div>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
           [type]="passwordType"
+          fill="solid"
           formControlName="password"
           label="Mot de passe"
           labelPlacement="stacked"
           placeholder="***********"
         >
         </ion-input>
-        <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" id="icon-eye"></ion-icon>
-      </ion-item>
+        <!--        <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" id="icon-eye"></ion-icon>-->
 
-      @if (loginForm.controls.password.invalid && loginForm.controls.password.dirty) {
-        <span class="span-error">{{ getErrorMessage('password') }}</span>
-      }
+        <div class="span-field">
+          @if (loginForm.controls.password.invalid && loginForm.controls.password.dirty) {
+            <span class="span-error">{{ getErrorMessage('password') }}</span>
+          }
+        </div>
+      </div>
 
       <div class="container-button">
         <ion-button (click)="onSignIn()" [disabled]="loginForm.invalid" size="medium">

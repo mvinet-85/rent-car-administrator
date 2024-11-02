@@ -1,26 +1,86 @@
 .login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  form:last-child > ion-item > ion-input {
-    width: 90%;
-  }
-
-  #icon-eye {
-    display: block;
-    position: absolute;
-    right: 15px;
-    top: 26px;
-  }
-
-  .container-button {
+  .login-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin-top: 1rem;
+    align-items: center;
+    background: rgb(240, 240, 240);
+    width: 40%;
+    margin: 0 20px;
+    padding: 40px 150px;
+    border-radius: 20px;
 
-    ion-button {
-      width: 80%;
-      margin-bottom: 15px;
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 0 25px;
+    }
+
+    .form-field {
+      position: relative;
+      width: 100%;
+
+      .span-field {
+        margin-top: 5px;
+        min-height: 20px;
+
+        @media (max-width: 768px) {
+          min-height: 15px;
+        }
+      }
+
+      ion-input {
+        width: 100%;
+        background: transparent;
+      }
+
+
+      .icon-eye {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 26px;
+      }
+    }
+
+    .container-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      margin-bottom: 10px;
+
+      @media (max-width: 768px) {
+        padding: 10px;
+      }
+
+      ion-button {
+        width: 80%;
+        margin-bottom: 20px;
+
+        @media (max-width: 768px) {
+          margin-bottom: 15px;
+        }
+      }
+
+      a {
+        color: #0054e8;
+        font-size: 15px;
+
+        @media (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    h1 {
+      color: #0054e8;
+      margin-bottom: 20px;
     }
   }
 }
