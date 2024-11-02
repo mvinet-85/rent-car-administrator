@@ -4,36 +4,43 @@
 
       <h1>S'inscrire</h1>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
+          fill="solid"
           formControlName="userName"
           label="Nom utilisateur"
           labelPlacement="stacked"
           placeholder="John Doe"
         >
         </ion-input>
-      </ion-item>
 
-      @if (registerForm.controls.userName.invalid && registerForm.controls.userName.dirty) {
-        <span class="span-error">{{ getErrorMessage('userName') }}</span>
-      }
+        <div class="span-field">
+          @if (registerForm.controls.userName.invalid && registerForm.controls.userName.dirty) {
+            <span class="span-error">{{ getErrorMessage('userName') }}</span>
+          }
+        </div>
+      </div>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
+          fill="solid"
           formControlName="email"
           label="E-mail"
           labelPlacement="stacked"
           placeholder="email@example.com"
         >
         </ion-input>
-      </ion-item>
 
-      @if (registerForm.controls.email.invalid && registerForm.controls.email.dirty) {
-        <span class="span-error">{{ getErrorMessage('email') }}</span>
-      }
+        <div class="span-field">
+          @if (registerForm.controls.email.invalid && registerForm.controls.email.dirty) {
+            <span class="span-error">{{ getErrorMessage('email') }}</span>
+          }
+        </div>
+      </div>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
+          fill="solid"
           formControlName="phone"
           label="Numéro de téléhone"
           labelPlacement="stacked"
@@ -41,15 +48,18 @@
           type="tel"
         >
         </ion-input>
-      </ion-item>
 
-      @if (registerForm.controls.phone.invalid && registerForm.controls.phone.dirty) {
-        <span class="span-error">{{ getErrorMessage('phone') }}</span>
-      }
+        <div class="span-field">
+          @if (registerForm.controls.phone.invalid && registerForm.controls.phone.dirty) {
+            <span class="span-error">{{ getErrorMessage('phone') }}</span>
+          }
+        </div>
+      </div>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
           [type]="passwordType"
+          fill="solid"
           formControlName="password"
           label="Mot de passe"
           labelPlacement="stacked"
@@ -57,15 +67,18 @@
         >
         </ion-input>
         <ion-icon (click)="onToggleShowPassword()" [name]="passwordIcon" class="icon-eye"></ion-icon>
-      </ion-item>
 
-      @if (registerForm.controls.password.invalid && registerForm.controls.password.dirty) {
-        <span class="span-error">{{ getErrorMessage('password') }}</span>
-      }
+        <div class="span-field">
+          @if (registerForm.controls.password.invalid && registerForm.controls.password.dirty) {
+            <span class="span-error">{{ getErrorMessage('password') }}</span>
+          }
+        </div>
+      </div>
 
-      <ion-item>
+      <div class="form-field">
         <ion-input
           [type]="passwordConfirmationType"
+          fill="solid"
           formControlName="passwordConfirmation"
           label="Confirmer le mot de passe"
           labelPlacement="stacked"
@@ -74,15 +87,18 @@
         </ion-input>
         <ion-icon (click)="onToggleShowPasswordConfirmation()" [name]="passwordConfirmationIcon"
                   class="icon-eye"></ion-icon>
-      </ion-item>
 
-      @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty) {
-        <span class="span-error">{{ getErrorMessage('passwordConfirmation') }}</span>
-      }
+        <div class="span-field">
 
-      @if (registerForm.errors?.['passwordMatch'] && registerForm.controls.passwordConfirmation.dirty) {
-        <span class="span-error">Les mots de passe ne correspondent pas</span>
-      }
+          @if (registerForm.controls.passwordConfirmation.invalid && registerForm.controls.passwordConfirmation.dirty) {
+            <span class="span-error">{{ getErrorMessage('passwordConfirmation') }}</span>
+          }
+
+          @if (registerForm.errors?.['passwordMatch'] && registerForm.controls.passwordConfirmation.dirty) {
+            <span class="span-error">Les mots de passe ne correspondent pas</span>
+          }
+        </div>
+      </div>
 
       <div class="container-button">
         <ion-button (click)="onSignUp()" [disabled]="registerForm.invalid" size="medium">
