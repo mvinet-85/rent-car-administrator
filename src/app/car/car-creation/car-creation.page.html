@@ -1,97 +1,118 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Ajout d'une nouvelle voiture</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content [fullscreen]="true" class="new-car">
-  <div>
-    <form [formGroup]="carForm">
-      <ion-item>
-        <ion-input
-          formControlName="brand"
-          label="Marque de la voiture"
-          labelPlacement="stacked"
-          placeholder="BMW"
-        >
-        </ion-input>
-      </ion-item>
+  <div class="parent-container">
+    <div class="new-car">
 
-      @if (carForm.controls.brand.invalid && carForm.controls.brand.dirty) {
-        <span class="span-error">{{ getErrorMessage('brand') }}</span>
-      }
+      <h1>Ajout d'une nouvelle voiture</h1>
 
-      <ion-item>
-        <ion-input
-          formControlName="model"
-          label="Modele de la voiture"
-          labelPlacement="stacked"
-          placeholder="Z4 coupé"
-        >
-        </ion-input>
-      </ion-item>
+      <form [formGroup]="carForm" class="car-form">
 
-      @if (carForm.controls.model.invalid && carForm.controls.model.dirty) {
-        <span class="span-error">{{ getErrorMessage('model') }}</span>
-      }
+        <div class="car-form-input">
+          <div class="car-form-input-text">
+            <div class="form-field">
+              <ion-input
+                fill="solid"
+                formControlName="brand"
+                label="Marque de la voiture"
+                labelPlacement="stacked"
+                placeholder="BMW"
+              >
+              </ion-input>
 
-      <ion-item>
-        <ion-input
-          formControlName="licensePlate"
-          label="Plaque d'immatriculation"
-          labelPlacement="stacked"
-          placeholder="AA-229-AA"
-        >
-        </ion-input>
-      </ion-item>
+              <div class="span-field">
+                @if (carForm.controls.brand.invalid && carForm.controls.brand.dirty) {
+                  <span class="span-error">{{ getErrorMessage('brand') }}</span>
+                }
+              </div>
+            </div>
 
-      @if (carForm.controls.licensePlate.invalid && carForm.controls.licensePlate.dirty) {
-        <span class="span-error">{{ getErrorMessage('licensePlate') }}</span>
-      }
 
-      <ion-item>
-        <ion-input
-          (change)="upload($event, 'frontPicture')"
-          accept="image/*"
-          label="Photo avant de la voiture"
-          labelPlacement="stacked"
-          type="file"
-        >
-        </ion-input>
-      </ion-item>
+            <div class="form-field">
+              <ion-input
+                fill="solid"
+                formControlName="model"
+                label="Modele de la voiture"
+                labelPlacement="stacked"
+                placeholder="Z4 coupé"
+              >
+              </ion-input>
 
-      @if (frontPicturePreview) {
-        <div class="image-preview">
-          <ion-img [src]="frontPicturePreview" alt="Prévisualisation de la photo avant"/>
+              <div class="span-field">
+                @if (carForm.controls.model.invalid && carForm.controls.model.dirty) {
+                  <span class="span-error">{{ getErrorMessage('model') }}</span>
+                }
+              </div>
+            </div>
+
+
+            <div class="form-field">
+              <ion-input
+                fill="solid"
+                formControlName="licensePlate"
+                label="Plaque d'immatriculation"
+                labelPlacement="stacked"
+                placeholder="AA-229-AA"
+              >
+              </ion-input>
+
+              <div class="span-field">
+                @if (carForm.controls.licensePlate.invalid && carForm.controls.licensePlate.dirty) {
+                  <span class="span-error">{{ getErrorMessage('licensePlate') }}</span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="car-form-input-image">
+            <div class="form-field">
+              <ion-input
+                (change)="upload($event, 'frontPicture')"
+                accept="image/*"
+                fill="solid"
+                label="Photo avant de la voiture"
+                labelPlacement="stacked"
+                type="file"
+              >
+              </ion-input>
+
+              @if (frontPicturePreview) {
+                <div class="image-preview">
+                  <ion-img [src]="frontPicturePreview" alt="Prévisualisation de la photo avant"/>
+                </div>
+              }
+            </div>
+
+
+            <div class="form-field">
+              <ion-input
+                (change)="upload($event, 'behindPicture')"
+                accept="image/*"
+                fill="solid"
+                label="Photo arrière de la voiture"
+                labelPlacement="stacked"
+                type="file"
+              >
+              </ion-input>
+
+              @if (behindPicturePreview) {
+                <div class="image-preview">
+                  <ion-img [src]="behindPicturePreview" alt="Prévisualisation de la photo arrière"/>
+                </div>
+              }
+            </div>
+          </div>
         </div>
-      }
 
-      <ion-item>
-        <ion-input
-          (change)="upload($event, 'behindPicture')"
-          accept="image/*"
-          label="Photo arrière de la voiture"
-          labelPlacement="stacked"
-          type="file"
-        >
-        </ion-input>
-      </ion-item>
-
-      @if (behindPicturePreview) {
-        <div class="image-preview">
-          <ion-img [src]="behindPicturePreview" alt="Prévisualisation de la photo arrière"/>
+        <div class="container-button">
+          <ion-button (click)="onCreate()" [disabled]="carForm.invalid" size="medium">
+            Ajouter
+          </ion-button>
+          <ion-button (click)="onNavigateToCarListPage()" size="medium">
+            Annuler
+          </ion-button>
         </div>
-      }
 
-      <div class="container-button">
-        <ion-button (click)="onCreate()" [disabled]="carForm.invalid" size="medium">
-          Ajouter
-        </ion-button>
-        <ion-button (click)="onNavigateToCarListPage()" size="medium">
-          Annuler
-        </ion-button>
-      </div>
-
-    </form>
+      </form>
+    </div>
   </div>
 </ion-content>
