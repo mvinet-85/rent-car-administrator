@@ -10,6 +10,7 @@ import {
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonIcon,
   IonImg,
   IonItem,
   IonLabel,
@@ -20,13 +21,15 @@ import {
 import {Router} from "@angular/router";
 import {Car} from "../../core/model/car";
 import {CarService} from "../../core/service/car/car.service";
+import {addIcons} from "ionicons";
+import {addCircleOutline} from "ionicons/icons";
 
 @Component({
   selector: 'app-car-list',
   templateUrl: './car-list.page.html',
   styleUrls: ['./car-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonIcon]
 })
 export class CarListPage implements OnInit {
 
@@ -36,6 +39,7 @@ export class CarListPage implements OnInit {
   private readonly carService: CarService = inject(CarService);
 
   constructor() {
+    addIcons({addCircleOutline});
   }
 
   ngOnInit() {

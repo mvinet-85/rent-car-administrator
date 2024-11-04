@@ -1,31 +1,31 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Liste des voitures</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
 
-<ion-content [fullscreen]="true" class="car-list">
+  <div class="parent-container">
+    <div class="car-list">
+      <div class="header">
+        <h1>La liste des voitures</h1>
+        <ion-button (click)="onNavigateToCreationPage()" size="medium">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Ajouter une voiture
+        </ion-button>
+      </div>
 
-  <div class="card-list">
-    <ion-list>
-      @for (car of cars; track car) {
-        <ion-card (click)="onCarSelect(car.licensePlate)">
-          <div class="image-preview">
-            <ion-img alt="Photo de la voiture" [src]="car.frontPicture"/>
-          </div>
-          <ion-card-header>
-            <ion-card-title>{{ car.model }}</ion-card-title>
-            <ion-card-subtitle>{{ car.brand }}</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
-      }
-    </ion-list>
-  </div>
-
-  <div class="container-button">
-    <ion-button (click)="onNavigateToCreationPage()" size="medium">
-      Ajouter une nouvelle voiture
-    </ion-button>
+      <div class="card-list">
+        <ion-list>
+          @for (car of cars; track car) {
+            <ion-card (click)="onCarSelect(car.licensePlate)">
+              <div class="image-preview">
+                <ion-img alt="Photo de la voiture" [src]="car.frontPicture"/>
+              </div>
+              <ion-card-header>
+                <ion-card-title>{{ car.model }}</ion-card-title>
+                <ion-card-subtitle>{{ car.brand }}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          }
+        </ion-list>
+      </div>
+    </div>
   </div>
 
 </ion-content>
