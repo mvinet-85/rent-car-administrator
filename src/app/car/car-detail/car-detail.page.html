@@ -1,27 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <div class="header">
-      <ion-icon (click)="onNavigateToCarListPage()" name="arrow-back" size="medium"></ion-icon>
-      <ion-title>Détail de la voiture</ion-title>
+<ion-content [fullscreen]="true">
+  <div class="parent-container">
+
+    <app-disconnect/>
+
+    <div class="car-detail">
+
+      <div class="header">
+        <ion-button (click)="onNavigateToCarListPage()" size="medium">
+          <ion-icon name="arrow-back"></ion-icon>
+          Retour
+        </ion-button>
+
+        <h1>Detail de la voiture</h1>
+      </div>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Modèle : {{ car?.model }}</ion-card-title>
+          <ion-card-subtitle>Marque : {{ car?.brand }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          Plaque d'immatriculation : {{ car?.licensePlate }}
+
+          <div class="picture-container">
+            <div class="picture">
+              <ion-img [src]="car?.frontPicture" alt="{{ car?.model }} front picture"></ion-img>
+              <p> Photo avant</p>
+            </div>
+
+            <div class="picture">
+              <ion-img [src]="car?.behindPicture" alt="{{ car?.model }} behind picture"></ion-img>
+              <p> Photo arrrière</p>
+            </div>
+          </div>
+        </ion-card-content>
+
+      </ion-card>
     </div>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" class="car-detail">
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Modèle : {{ car?.model }}</ion-card-title>
-      <ion-card-subtitle>Marque : {{ car?.brand }}</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      Plaque d'immatriculation : {{ car?.licensePlate }}
-
-      <ion-img [src]="car?.frontPicture" alt="{{ car?.model }} front picture"></ion-img>
-      <ion-img [src]="car?.behindPicture" alt="{{ car?.model }} behind picture"></ion-img>
-    </ion-card-content>
-
-  </ion-card>
+  </div>
 
 </ion-content>
