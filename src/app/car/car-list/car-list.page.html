@@ -11,19 +11,26 @@
       </div>
 
       <div class="card-list">
-        <ion-list>
-          @for (car of cars; track car) {
-            <ion-card (click)="onCarSelect(car.licensePlate)">
-              <div class="image-preview">
-                <ion-img alt="Photo de la voiture" [src]="car.frontPicture"/>
-              </div>
-              <ion-card-header>
-                <ion-card-title>{{ car.model }}</ion-card-title>
-                <ion-card-subtitle>{{ car.brand }}</ion-card-subtitle>
-              </ion-card-header>
-            </ion-card>
-          }
-        </ion-list>
+        @if (cars.length) {
+          <ion-list>
+            @for (car of cars; track car) {
+              <ion-card (click)="onCarSelect(car.licensePlate)">
+                <div class="image-preview">
+                  <ion-img alt="Photo de la voiture" [src]="car.frontPicture"/>
+                </div>
+                <ion-card-header>
+                  <ion-card-title>{{ car.model }}</ion-card-title>
+                  <ion-card-subtitle>{{ car.brand }}</ion-card-subtitle>
+                </ion-card-header>
+              </ion-card>
+            }
+          </ion-list>
+        } @else {
+          <div class="no-data">
+            <ion-img alt="Pas de voiture" src="/assets/no_data.png"/>
+            <h2>Pas de voiture ajoutée</h2>
+          </div>
+        }
       </div>
     </div>
   </div>
