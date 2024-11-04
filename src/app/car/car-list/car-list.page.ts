@@ -23,13 +23,14 @@ import {Car} from "../../core/model/car";
 import {CarService} from "../../core/service/car/car.service";
 import {addIcons} from "ionicons";
 import {addCircleOutline} from "ionicons/icons";
+import {DisconnectComponent} from "../../component/disconnect/disconnect.component";
 
 @Component({
   selector: 'app-car-list',
   templateUrl: './car-list.page.html',
   styleUrls: ['./car-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonIcon]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonIcon, DisconnectComponent]
 })
 export class CarListPage implements OnInit {
 
