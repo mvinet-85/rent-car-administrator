@@ -1,0 +1,13 @@
+.disconnect {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  ion-button {
+    --color: white;
+
+    ion-icon {
+      margin-right: 5px;
+    }
+  }
+}
