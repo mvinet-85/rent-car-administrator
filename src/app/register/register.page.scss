@@ -60,7 +60,7 @@
       }
 
       ion-button {
-        width: 80%;
+        width: max-content;
         margin-bottom: 20px;
 
         @media (max-width: 768px) {
@@ -79,8 +79,15 @@
     }
 
     h1 {
-      color: #0054e8;
-      margin-bottom: 10px;
+      color: #01042d;
+      font-weight: bold;
+      font-size: 35px;
+      margin-bottom: 30px;
+
+      @media (max-width: 768px) {
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
     }
   }
 }
