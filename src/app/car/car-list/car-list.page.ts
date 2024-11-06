@@ -9,6 +9,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonContent,
+  IonFooter,
   IonHeader,
   IonIcon,
   IonImg,
@@ -30,7 +31,7 @@ import {DisconnectComponent} from "../../component/disconnect/disconnect.compone
   templateUrl: './car-list.page.html',
   styleUrls: ['./car-list.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonIcon, DisconnectComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonList, IonItem, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonIcon, DisconnectComponent, IonFooter]
 })
 export class CarListPage implements OnInit {
 
