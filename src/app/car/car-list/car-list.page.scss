@@ -3,7 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  padding-top: 60px;
+
+  .header {
+    width: 100%;
+  }
 
   .car-list {
     display: flex;
@@ -21,7 +24,7 @@
       width: 90%;
     }
 
-    .header {
+    .header-car-list {
       display: flex;
       justify-content: space-between;
       align-items: center;
