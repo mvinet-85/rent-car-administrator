@@ -1,18 +1,18 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 import {IonicModule} from '@ionic/angular';
 
-import {DisconnectComponent} from './disconnect.component';
+import {HeaderComponent} from './header.component';
 
 describe('DisconnectComponent', () => {
-  let component: DisconnectComponent;
-  let fixture: ComponentFixture<DisconnectComponent>;
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [IonicModule.forRoot(), DisconnectComponent]
+      imports: [IonicModule.forRoot(), HeaderComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DisconnectComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

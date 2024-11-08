@@ -21,14 +21,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
 import {addIcons} from "ionicons";
 import {arrowBack} from "ionicons/icons";
-import {DisconnectComponent} from "../../component/disconnect/disconnect.component";
+import {HeaderComponent} from "../../component/header/header.component";
 
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.page.html',
   styleUrls: ['./car-detail.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonItemSliding, IonButton, IonIcon, DisconnectComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonImg, IonItemSliding, IonButton, IonIcon, HeaderComponent]
 })
 export class CarDetailPage implements OnInit {
 

@@ -5,15 +5,15 @@ import {logOutOutline} from "ionicons/icons";
 import {IonicModule} from "@ionic/angular";
 
 @Component({
-  selector: 'app-disconnect',
-  templateUrl: './disconnect.component.html',
-  styleUrls: ['./disconnect.component.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
   standalone: true,
   imports: [
     IonicModule
   ]
 })
-export class DisconnectComponent {
+export class HeaderComponent {
 
   private readonly router: Router = inject(Router);
 

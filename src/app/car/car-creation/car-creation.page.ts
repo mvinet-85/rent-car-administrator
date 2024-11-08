@@ -18,14 +18,14 @@ import {CarService} from "../../core/service/car/car.service";
 import {Car} from "../../core/model/car";
 import {CarFormModel} from "../../core/model/form";
 import {ImageService} from "../../core/service/image/image.service";
-import {DisconnectComponent} from "../../component/disconnect/disconnect.component";
+import {HeaderComponent} from "../../component/header/header.component";
 
 @Component({
   selector: 'app-car-creation',
   templateUrl: './car-creation.page.html',
   styleUrls: ['./car-creation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonIcon, IonInput, IonItem, ReactiveFormsModule, IonImg, DisconnectComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonIcon, IonInput, IonItem, ReactiveFormsModule, IonImg, HeaderComponent]
 })
 export class CarCreationPage implements OnInit {
 
