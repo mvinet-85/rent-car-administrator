@@ -42,9 +42,8 @@ export class RegisterPage {
   public passwordIcon: string = 'eye-outline';
   public passwordConfirmationType: string = 'password';
   public passwordConfirmationIcon: string = 'eye-outline';
-
-  private router: Router = inject(Router);
-  private authenticationService: AuthenticationService = inject(AuthenticationService);
+  private readonly router: Router = inject(Router);
+  private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
 
   constructor() {
     addIcons({eyeOutline, eyeOffOutline});
@@ -67,6 +66,7 @@ export class RegisterPage {
       this.authenticationService.signUpWithEmailAndPassword(this.registerForm.value as unknown as User)
         .then((userCreated: boolean | unknown) => {
           if (userCreated) {
+            this.registerForm.reset();
             this.router.navigate(['car']);
           }
         }).catch((error: any) => {

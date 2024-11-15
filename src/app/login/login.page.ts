@@ -37,8 +37,8 @@ export class LoginPage {
   public passwordType = 'password';
   public passwordIcon = 'eye-outline';
 
-  private router: Router = inject(Router);
-  private authenticationService: AuthenticationService = inject(AuthenticationService);
+  private readonly router: Router = inject(Router);
+  private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
 
   constructor() {
     addIcons({eyeOutline, eyeOffOutline});
@@ -53,6 +53,7 @@ export class LoginPage {
   public onSignIn(): void {
     this.authenticationService.signInWithEmailAndPassword(this.loginForm.value as unknown as Partial<User>)
       .then(() => {
+        this.loginForm.reset();
         this.router.navigate(['car']);
       }).catch((error) => {
       console.error(error);
