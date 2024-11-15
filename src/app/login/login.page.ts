@@ -19,6 +19,7 @@ import {Utils} from "../core/utils/utils";
 import {FormValidator} from "../core/utils/form-validator";
 import {LoginFormModel} from "../core/model/form";
 import {User} from "../core/model/user";
+import {ToastService} from "../core/service/toast/toast.service";
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginPage {
 
   private readonly router: Router = inject(Router);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
+  private readonly toastService: ToastService = inject(ToastService);
 
   constructor() {
     addIcons({eyeOutline, eyeOffOutline});
@@ -54,8 +56,10 @@ export class LoginPage {
     this.authenticationService.signInWithEmailAndPassword(this.loginForm.value as unknown as Partial<User>)
       .then(() => {
         this.loginForm.reset();
+        this.toastService.infoToast("Vous êtes connecté");
         this.router.navigate(['car']);
       }).catch((error) => {
+      this.toastService.errorToast(error.message);
       console.error(error);
     });
   }

@@ -1,17 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonIcon,
-  IonImg,
-  IonInput,
-  IonItem,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import {IonButton, IonContent, IonHeader, IonImg, IonInput, IonTitle, IonToolbar} from '@ionic/angular/standalone';
 import {FormValidator} from "../../core/utils/form-validator";
 import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
@@ -19,13 +9,14 @@ import {Car} from "../../core/model/car";
 import {CarFormModel} from "../../core/model/form";
 import {ImageService} from "../../core/service/image/image.service";
 import {HeaderComponent} from "../../component/header/header.component";
+import {ToastService} from "../../core/service/toast/toast.service";
 
 @Component({
   selector: 'app-car-creation',
   templateUrl: './car-creation.page.html',
   styleUrls: ['./car-creation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonIcon, IonInput, IonItem, ReactiveFormsModule, IonImg, HeaderComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonImg, ReactiveFormsModule, HeaderComponent, IonInput]
 })
 export class CarCreationPage implements OnInit {
 
@@ -47,6 +38,7 @@ export class CarCreationPage implements OnInit {
   private readonly carService: CarService = inject(CarService);
   private readonly imageService: ImageService = inject(ImageService);
   private readonly router: Router = inject(Router);
+  private readonly toastService: ToastService = inject(ToastService);
 
   constructor() {
   }
@@ -64,6 +56,7 @@ export class CarCreationPage implements OnInit {
         this.carForm.controls.licensePlate.updateValueAndValidity();
       })
       .catch((error: any) => {
+        this.toastService.errorToast(error.message);
         console.error(error);
       });
   }
@@ -80,8 +73,10 @@ export class CarCreationPage implements OnInit {
     if (this.carForm.valid) {
       this.carService.saveCar(this.carForm.value as unknown as Car)
         .then(() => {
+          this.toastService.infoToast("Voiture ajoutée")
           this.onNavigateToCarListPage();
         }).catch((error: any) => {
+        this.toastService.errorToast(error.message);
         console.error(error);
       });
     }

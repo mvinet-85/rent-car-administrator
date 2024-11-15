@@ -10,6 +10,7 @@ import {
 import {getDatabase, ref, set,} from 'firebase/database';
 import {FirebaseUser, User} from "../../model/user";
 import {Router} from "@angular/router";
+import {ToastService} from "../toast/toast.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ import {Router} from "@angular/router";
 export class AuthenticationService {
   private firebaseUser: FirebaseUser | null = null;
   private readonly router: Router = inject(Router)
+  private readonly toastService: ToastService = inject(ToastService);
 
   constructor() {
     this.initAuthListener();
@@ -63,6 +65,7 @@ export class AuthenticationService {
     const auth = getAuth();
     signOut(auth).then(() => {
       this.clearToken();
+      this.toastService.infoToast("Vous êtes déconnecté");
       this.router.navigate(['/login']);
     });
   }

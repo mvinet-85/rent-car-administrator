@@ -20,6 +20,7 @@ import {FormValidator} from "../core/utils/form-validator";
 import {AuthenticationService} from "../core/service/authentication/authentication.service";
 import {Utils} from "../core/utils/utils";
 import {User} from "../core/model/user";
+import {ToastService} from "../core/service/toast/toast.service";
 
 @Component({
   selector: 'app-register',
@@ -44,6 +45,7 @@ export class RegisterPage {
   public passwordConfirmationIcon: string = 'eye-outline';
   private readonly router: Router = inject(Router);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
+  private readonly toastService: ToastService = inject(ToastService);
 
   constructor() {
     addIcons({eyeOutline, eyeOffOutline});
@@ -67,9 +69,11 @@ export class RegisterPage {
         .then((userCreated: boolean | unknown) => {
           if (userCreated) {
             this.registerForm.reset();
+            this.toastService.infoToast("Vous êtes inscrit");
             this.router.navigate(['car']);
           }
         }).catch((error: any) => {
+        this.toastService.errorToast(error.message);
         console.error(error);
       })
     }

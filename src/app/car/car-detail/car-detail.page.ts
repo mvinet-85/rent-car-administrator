@@ -22,6 +22,7 @@ import {CarService} from "../../core/service/car/car.service";
 import {addIcons} from "ionicons";
 import {arrowBack} from "ionicons/icons";
 import {HeaderComponent} from "../../component/header/header.component";
+import {ToastService} from "../../core/service/toast/toast.service";
 
 @Component({
   selector: 'app-car-detail',
@@ -37,6 +38,7 @@ export class CarDetailPage implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly router: Router = inject(Router);
   private readonly carService: CarService = inject(CarService);
+  private readonly toastService: ToastService = inject(ToastService);
 
   constructor() {
     addIcons({arrowBack});
@@ -51,6 +53,7 @@ export class CarDetailPage implements OnInit {
           this.car = car;
         })
         .catch((error) => {
+          this.toastService.errorToast(error.message);
           console.error(error);
         });
     }
