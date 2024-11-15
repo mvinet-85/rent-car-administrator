@@ -4,3 +4,8 @@ export interface User {
   phone: string,
   password: string
 }
+
+export interface FirebaseUser {
+  uid: string;
+  email: string | null;
+}

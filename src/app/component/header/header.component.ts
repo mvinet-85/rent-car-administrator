@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {addIcons} from "ionicons";
 import {logOutOutline} from "ionicons/icons";
 import {IonicModule} from "@ionic/angular";
+import {AuthenticationService} from "../../core/service/authentication/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -16,13 +17,13 @@ import {IonicModule} from "@ionic/angular";
 export class HeaderComponent {
 
   private readonly router: Router = inject(Router);
+  private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
 
   constructor() {
     addIcons({logOutOutline});
   }
 
   onNavigateToLoginPage() {
-    this.router.navigate(['login']);
+    this.authenticationService.signOut();
   }
-
 }
