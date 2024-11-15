@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -16,8 +16,9 @@ import {Router} from "@angular/router";
 })
 export class AuthenticationService {
   private firebaseUser: FirebaseUser | null = null;
+  private readonly router: Router = inject(Router)
 
-  constructor(private router: Router) {
+  constructor() {
     this.initAuthListener();
   }
 
