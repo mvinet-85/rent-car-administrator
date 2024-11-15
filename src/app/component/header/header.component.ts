@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {Router} from "@angular/router";
 import {addIcons} from "ionicons";
 import {logOutOutline} from "ionicons/icons";
 import {IonicModule} from "@ionic/angular";
@@ -15,8 +14,6 @@ import {AuthenticationService} from "../../core/service/authentication/authentic
   ]
 })
 export class HeaderComponent {
-
-  private readonly router: Router = inject(Router);
   private readonly authenticationService: AuthenticationService = inject(AuthenticationService);
 
   constructor() {
