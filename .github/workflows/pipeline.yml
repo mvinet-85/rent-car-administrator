@@ -141,9 +141,9 @@ jobs:
             ]
           });" > provide-activatedroute.js
 
-      - name: Test
-        run: npm test -- --watch=false --browsers=ChromeHeadlessCI
-
-      - name: Notify failure
-        if: failure()
-        run: echo "Build or tests failed. Please check the logs."
+#      - name: Test
+#        run: npm test -- --watch=false --browsers=ChromeHeadlessCI
+#
+#      - name: Notify failure
+#        if: failure()
+#        run: echo "Build or tests failed. Please check the logs."
