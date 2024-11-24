@@ -17,10 +17,8 @@ const firebaseConfig = {
   appId: "1:943999344997:web:15ff3ff6f0dc0e5a9a018c"
 };
 
-const app = initializeApp(firebaseConfig);
-
+initializeApp(firebaseConfig);
 defineCustomElements(window);
-
 bootstrapApplication(AppComponent, {
   providers: [
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},

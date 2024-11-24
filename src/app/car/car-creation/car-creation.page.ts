@@ -133,7 +133,7 @@ export class CarCreationPage implements OnInit {
       source: CameraSource.Prompt
     });
 
-    if (image && image.dataUrl) {
+    if (image?.dataUrl) {
       this.carForm.get(formControlName)?.setValue(image.dataUrl);
       if (formControlName === 'frontPicture') {
         this.frontPicturePreview = image.dataUrl;
@@ -141,7 +141,5 @@ export class CarCreationPage implements OnInit {
         this.behindPicturePreview = image.dataUrl;
       }
     }
-
-    // this.imageSource = image.dataUrl;
   };
 }
