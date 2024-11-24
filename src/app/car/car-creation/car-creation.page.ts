@@ -1,16 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonImg,
-  IonInput,
-  IonModal,
-  IonTitle,
-  IonToolbar
-} from '@ionic/angular/standalone';
+import {IonButton, IonContent, IonHeader, IonImg, IonInput, IonTitle, IonToolbar} from '@ionic/angular/standalone';
 import {FormValidator} from "../../core/utils/form-validator";
 import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
@@ -18,7 +9,6 @@ import {Car} from "../../core/model/car";
 import {CarFormModel} from "../../core/model/form";
 import {HeaderComponent} from "../../component/header/header.component";
 import {ToastService} from "../../core/service/toast/toast.service";
-import {ModalComponent} from "../../component/modal/modal.component";
 import {Camera, CameraResultType, CameraSource} from "@capacitor/camera";
 
 @Component({
@@ -26,7 +16,7 @@ import {Camera, CameraResultType, CameraSource} from "@capacitor/camera";
   templateUrl: './car-creation.page.html',
   styleUrls: ['./car-creation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonImg, ReactiveFormsModule, HeaderComponent, IonInput, IonModal, ModalComponent]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonImg, ReactiveFormsModule, HeaderComponent, IonInput]
 })
 export class CarCreationPage implements OnInit {
 
