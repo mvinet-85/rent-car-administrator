@@ -35,29 +35,37 @@
 
       @media (max-width: 768px) {
         margin-bottom: 10px;
+      }
+
+      .title {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 150px;
 
         h1 {
-          text-align: right;
+          color: #01042d;
+          font-weight: bold;
+          font-size: 35px;
+
+          @media (max-width: 768px) {
+            font-size: 25px;
+            margin-bottom: 10px;
+          }
         }
       }
 
-      h1 {
-        color: #01042d;
-        font-weight: bold;
-        font-size: 35px;
+      .back-button {
+        width: 150px;
 
-        @media (max-width: 768px) {
-          font-size: 25px;
-          margin-bottom: 10px;
+        ion-button {
+          width: max-content;
         }
-      }
 
-      ion-button {
-        width: max-content;
-      }
-
-      ion-icon {
-        margin-right: 10px;
+        ion-icon {
+          margin-right: 10px;
+        }
       }
     }
 

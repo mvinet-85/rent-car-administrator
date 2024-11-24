@@ -8,12 +8,16 @@
     <div class="car-detail">
 
       <div class="header-car-detail">
-        <ion-button (click)="onNavigateToCarListPage()" size="medium">
-          <ion-icon name="arrow-back"></ion-icon>
-          Retour
-        </ion-button>
+        <div class="back-button">
+          <ion-button (click)="onNavigateToCarListPage()" size="medium">
+            <ion-icon name="arrow-back"></ion-icon>
+            Retour
+          </ion-button>
+        </div>
 
-        <h1>Detail de la voiture</h1>
+        <div class="title">
+          <h1>Detail de la voiture</h1>
+        </div>
       </div>
 
       <ion-card>
