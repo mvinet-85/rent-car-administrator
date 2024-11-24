@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
-      console.log("connecté");
       return true;
     } else {
       this.toastService.errorToast("Vous devez être connecté pour accéder à ces pages");
