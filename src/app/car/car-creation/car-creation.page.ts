@@ -16,7 +16,6 @@ import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
 import {Car} from "../../core/model/car";
 import {CarFormModel} from "../../core/model/form";
-import {ImageService} from "../../core/service/image/image.service";
 import {HeaderComponent} from "../../component/header/header.component";
 import {ToastService} from "../../core/service/toast/toast.service";
 import {ModalComponent} from "../../component/modal/modal.component";
@@ -47,7 +46,6 @@ export class CarCreationPage implements OnInit {
   public behindPicturePreview: string | ArrayBuffer | null = null;
   private allLicencesPlate: string[] = [];
   private readonly carService: CarService = inject(CarService);
-  private readonly imageService: ImageService = inject(ImageService);
   private readonly router: Router = inject(Router);
   private readonly toastService: ToastService = inject(ToastService);
 
@@ -102,27 +100,6 @@ export class CarCreationPage implements OnInit {
     this.behindPicturePreview = null;
     this.frontPicturePreview = null;
     this.carForm.reset();
-  }
-
-  upload($event: Event, formControlName: string): void {
-    const input = $event.target as HTMLInputElement;
-    if (input.files?.[0]) {
-      const file = input.files[0];
-      const filePath = `cars/${file.name}`;
-
-      this.imageService.uploadImage(filePath, file)
-        .then((url) => {
-          this.carForm.get(formControlName)?.setValue(url);
-          if (formControlName === 'frontPicture') {
-            this.frontPicturePreview = url;
-          } else if (formControlName === 'behindPicture') {
-            this.behindPicturePreview = url;
-          }
-        })
-        .catch((error) => {
-          console.error('Erreur lors de l\'upload de l\'image : ', error);
-        });
-    }
   }
 
   async takePicture(formControlName: string) {
