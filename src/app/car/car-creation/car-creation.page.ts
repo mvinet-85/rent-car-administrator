@@ -1,7 +1,16 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {IonButton, IonContent, IonHeader, IonImg, IonInput, IonTitle, IonToolbar} from '@ionic/angular/standalone';
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonImg,
+  IonInput,
+  IonModal,
+  IonTitle,
+  IonToolbar
+} from '@ionic/angular/standalone';
 import {FormValidator} from "../../core/utils/form-validator";
 import {Router} from "@angular/router";
 import {CarService} from "../../core/service/car/car.service";
@@ -10,13 +19,15 @@ import {CarFormModel} from "../../core/model/form";
 import {ImageService} from "../../core/service/image/image.service";
 import {HeaderComponent} from "../../component/header/header.component";
 import {ToastService} from "../../core/service/toast/toast.service";
+import {ModalComponent} from "../../component/modal/modal.component";
+import {Camera, CameraResultType, CameraSource} from "@capacitor/camera";
 
 @Component({
   selector: 'app-car-creation',
   templateUrl: './car-creation.page.html',
   styleUrls: ['./car-creation.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonImg, ReactiveFormsModule, HeaderComponent, IonInput]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonImg, ReactiveFormsModule, HeaderComponent, IonInput, IonModal, ModalComponent]
 })
 export class CarCreationPage implements OnInit {
 
@@ -113,4 +124,24 @@ export class CarCreationPage implements OnInit {
         });
     }
   }
+
+  async takePicture(formControlName: string) {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Prompt
+    });
+
+    if (image && image.dataUrl) {
+      this.carForm.get(formControlName)?.setValue(image.dataUrl);
+      if (formControlName === 'frontPicture') {
+        this.frontPicturePreview = image.dataUrl;
+      } else if (formControlName === 'behindPicture') {
+        this.behindPicturePreview = image.dataUrl;
+      }
+    }
+
+    // this.imageSource = image.dataUrl;
+  };
 }

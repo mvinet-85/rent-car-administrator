@@ -5,6 +5,7 @@ import {IonicRouteStrategy, provideIonicAngular} from '@ionic/angular/standalone
 import {routes} from './app/app.routes';
 import {AppComponent} from './app/app.component';
 import {initializeApp} from "firebase/app";
+import {defineCustomElements} from '@ionic/pwa-elements/loader';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAtTadiTbfsVqRAK1fxolhABxc4gAJHKAI",
@@ -17,6 +18,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+defineCustomElements(window);
 
 bootstrapApplication(AppComponent, {
   providers: [

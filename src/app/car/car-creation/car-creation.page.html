@@ -69,15 +69,9 @@
 
           <div class="car-form-input-image">
             <div class="form-field">
-              <ion-input
-                (change)="upload($event, 'frontPicture')"
-                accept="image/*"
-                fill="solid"
-                label="Photo avant de la voiture"
-                labelPlacement="stacked"
-                type="file"
-              >
-              </ion-input>
+              <ion-button (click)="takePicture('frontPicture')" size="medium">
+                Sélectionner une photo avant de la voiture
+              </ion-button>
 
               @if (frontPicturePreview) {
                 <div class="image-preview">
@@ -86,17 +80,10 @@
               }
             </div>
 
-
             <div class="form-field">
-              <ion-input
-                (change)="upload($event, 'behindPicture')"
-                accept="image/*"
-                fill="solid"
-                label="Photo arrière de la voiture"
-                labelPlacement="stacked"
-                type="file"
-              >
-              </ion-input>
+              <ion-button (click)="takePicture('behindPicture')">
+                Sélectionner une photo arrière de la voiture
+              </ion-button>
 
               @if (behindPicturePreview) {
                 <div class="image-preview">
