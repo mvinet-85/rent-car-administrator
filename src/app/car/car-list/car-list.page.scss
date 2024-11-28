@@ -73,8 +73,8 @@
 
         ion-card {
           cursor: pointer;
-          width: 30%;
-          height: 300px;
+          width: 31%;
+          height: 350px;
           padding-top: 20px;
 
           @media (max-width: 768px) {
@@ -86,10 +86,10 @@
           .image-preview {
             display: flex;
             justify-content: center;
-            height: 70%;
+            height: 75%;
 
             ion-img {
-              width: 80%;
+              width: 90%;
               height: auto;
             }
           }
@@ -99,7 +99,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            height: 28%;
+            height: 23%;
           }
         }
       }

@@ -92,6 +92,8 @@
 
           @media (max-width: 768px) {
             flex-direction: column;
+            justify-content: start;
+            height: 600px;
           }
 
           .form-field {
@@ -114,6 +116,7 @@
 
               @media (max-width: 768px) {
                 flex-direction: column;
+                height: 220px;
               }
 
               ion-img {

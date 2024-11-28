@@ -44,6 +44,12 @@
         align-items: center;
         margin-right: 150px;
 
+        @media (max-width: 768px) {
+          flex: none;
+          width: 200px;
+          text-align: right;
+        }
+
         h1 {
           color: #01042d;
           font-weight: bold;
@@ -100,7 +106,7 @@
           flex-direction: column;
 
           @media (max-width: 768px) {
-            width: 80%;
+            width: 90%;
             margin-bottom: 10px;
           }
 
@@ -110,6 +116,7 @@
             margin-bottom: 20px;
 
             @media (max-width: 768px) {
+              margin-bottom: 5px;
               height: 200px;
             }
           }
@@ -117,6 +124,7 @@
           p {
             color: rgb(117, 112, 112);
           }
+
         }
       }
     }

@@ -73,11 +73,11 @@
                 Sélectionner une photo avant de la voiture
               </ion-button>
 
-              @if (frontPicturePreview) {
-                <div class="image-preview">
+              <div class="image-preview">
+                @if (frontPicturePreview) {
                   <ion-img [src]="frontPicturePreview" alt="Prévisualisation de la photo avant"/>
-                </div>
-              }
+                }
+              </div>
             </div>
 
             <div class="form-field">
@@ -85,11 +85,11 @@
                 Sélectionner une photo arrière de la voiture
               </ion-button>
 
-              @if (behindPicturePreview) {
-                <div class="image-preview">
+              <div class="image-preview">
+                @if (behindPicturePreview) {
                   <ion-img [src]="behindPicturePreview" alt="Prévisualisation de la photo arrière"/>
-                </div>
-              }
+                }
+              </div>
             </div>
           </div>
         </div>
