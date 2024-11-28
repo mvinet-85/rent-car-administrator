@@ -59,7 +59,11 @@ export class LoginPage {
         this.toastService.infoToast("Vous êtes connecté");
         this.router.navigate(['car']);
       }).catch((error) => {
-      this.toastService.errorToast(error.message);
+      if (error.message == 'Firebase: Error (auth/invalid-credential).') {
+        this.toastService.errorToast('Mauvais email et/ou mot de passe');
+      } else {
+        this.toastService.errorToast(error.message);
+      }
       console.error(error);
     });
   }
